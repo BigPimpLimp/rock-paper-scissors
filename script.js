@@ -1,8 +1,9 @@
 let humanScore = 0;
 let computerScore = 0;
+let choice;
 
 function getComputerChoice() {
-    let choice = Math.floor(Math.random() * 3);
+    choice = Math.floor(Math.random() * 3);
     let output;
 
     if (choice === 0) {
@@ -37,50 +38,60 @@ function getHumanChoice() {
 
 
 function playRound(computerChoice, humanChoice) {
+    if (humanScore == 5 || computerScore == 5) {
+        return;
+    }
     if (computerChoice === humanChoice) {
-        console.log('It\'s a tie!')
+        div.textContent = 'It\'s a tie!';
     }
     else if (computerChoice === 0)  {
         if (humanChoice === 1) {
-            console.log('You win! Paper beats rock');
+            div.textContent = 'You win! Paper beats rock';
             humanScore++;
+            
         }
             else {
-                console.log('You lose! Rock beats scissors');
+                div.textContent = 'You lose! Rock beats scissors';
                 computerScore++;
             }
     }
     else if (computerChoice === 1) {
         if (humanChoice === 0) {
-            console.log('You lose! Paper beats rock');
+            div.textContent = 'You lose! Paper beats rock';
             computerScore++;
         }
             else {
-                console.log('You win! Scissors beats paper');
+                div.textContent = 'You win! Scissors beats paper';
                 humanScore++;
             }
     }
     else {
         if (humanChoice === 0) {
-            console.log('You win! Rock beats scissors');
+            div.textContent = 'You win! Rock beats scissors';
             humanScore++;
         }
             else {
-                console.log('You lose! Scissors beats paper');
+                div.textContent = 'You lose! Scissors beats paper'
                 computerScore++;
             }
+    }
+    if (humanScore == 5) {
+        div.textContent = 'Congratulations to the Human!';
+    }
+    else if (computerScore == 5) {
+        div.textContent = 'Congratulations to Computer!'
     }
     return;
 }
 
-function playGame() {
-    while (humanScore < 5 && computerScore < 5) {
-        let humanChoice = getHumanChoice();
-        let computerChoice = getComputerChoice();
-        playRound(computerChoice, humanChoice);
-        console.log('Human ' + humanScore + ' Computer ' + computerScore)
-    }
-}
+// function playGame() {
+//     while (humanScore < 5 && computerScore < 5) {
+//         let humanChoice = getHumanChoice();
+//         let computerChoice = getComputerChoice();
+//         playRound(computerChoice, humanChoice);
+//         console.log('Human ' + humanScore + ' Computer ' + computerScore)
+//     }
+// }
 
 
 
